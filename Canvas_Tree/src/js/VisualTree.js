@@ -78,8 +78,8 @@ VisualTree.prototype.toString = function () {
 };
 
 VisualTree.prototype.clear = function () {
-    this.binaryTree.root = null;
     this.clearScreen();
+    this.binaryTree.root = null;
 };
 
 VisualTree.prototype.find = function (value) {
@@ -98,7 +98,7 @@ VisualTree.prototype.find = function (value) {
 
 VisualTree.prototype.clearScreen = function () {
     context.fillStyle = '#ffffff';
-    context.fillRect(0, 0, this.W, this.H);
+    context.fillRect(0, 0, window.innerWidth*2, window.innerHeight*2);
 };
 
 VisualTree.prototype.displayElement = function (x, y, value, fillColor) {

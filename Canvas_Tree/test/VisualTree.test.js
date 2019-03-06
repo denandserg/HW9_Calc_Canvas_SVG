@@ -131,7 +131,7 @@ describe('Binary search tree methods', () => {
             mockTree.insert("A");
             mockTree.insert("C");
 
-            let mockStr = 'A, C, undefined, null, 1, 3, 4, 5, 6, 7, 8, 10, 13, 14';
+            let mockStr = '"A, C, undefined, null, 1, 3, 4, 5, 6, 7, 8, 10, 13, 14"';
             const actual = mockTree.toString();
             assert.deepEqual(actual, mockStr);
         });
@@ -859,7 +859,7 @@ describe('Visual BSTree methods', () => {
             visualTree.insert(10);
             visualTree.insert(14);
 
-            let visStr = '2, 4, 6, 8, 10, 12, 14';
+            let visStr = '"2, 4, 6, 8, 10, 12, 14"';
             const actual = visualTree.toString();
             assert.deepEqual(actual, visStr);
         });

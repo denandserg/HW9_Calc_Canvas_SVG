@@ -1,5 +1,5 @@
-var canvas = document.getElementById("myCanvas");
-var context = canvas.getContext("2d");
+let canvas = document.getElementById("myCanvas");
+let context = canvas.getContext("2d");
 context.scale(0.5,0.5);
 
 function drawCanvas (canvasObj, x,y) {
@@ -10,7 +10,6 @@ function drawCanvas (canvasObj, x,y) {
     context.lineTo(x,y);
     context.stroke();
     return context;
-
 }
 
 function CanvasMock(width, height) {
@@ -45,7 +44,7 @@ function ContextMock(mock) {
     }
 }
 
-var visualTree = new VisualTree(context);
+let visualTree = new VisualTree(context);
 
 visualTree.insert(8);
 visualTree.insert(4);
@@ -67,22 +66,22 @@ let btnString = document.getElementById("btnString");
 let outputValArray = document.getElementById("outputValArray");
 let outputValString = document.getElementById("outputValString");
 
-var myCanvas = document.getElementById("myCanvas");
-var dragging = false;
-var lastX;
-var marginLeft = 0;
+let myCanvas = document.getElementById("myCanvas");
+let dragging = false;
+let lastX;
+let marginLeft = 0;
 
 myCanvas.addEventListener('mousedown', function(e) {
-    var evt = e || event;
+    let evt = e || event;
     dragging = true;
     lastX = evt.clientX;
     e.preventDefault();
 }, false);
 
 window.addEventListener('mousemove', function(e) {
-    var evt = e || event;
+    let evt = e || event;
     if (dragging) {
-        var delta = evt.clientX - lastX;
+        let delta = evt.clientX - lastX;
         lastX = evt.clientX;
         marginLeft += delta;
         myCanvas.style.marginLeft = marginLeft + "px";
