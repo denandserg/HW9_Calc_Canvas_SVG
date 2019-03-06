@@ -12,20 +12,12 @@
     height: 100vh;
 }
 
-.canvasDiv {
+.canvas-div {
     width: 80%;
     margin: 5px 7px;
     border: 2px solid rgb(248, 20, 20);
     border-radius: 10px;
     overflow: hidden;
-}
-
-.canvas {
-    background-color: #eee;
-    border: 2px solid rgb(248, 20, 20);
-    border-radius: 10px;
-    margin: 5px;
-    overflow: scroll
 }
 
 .data-panel {
