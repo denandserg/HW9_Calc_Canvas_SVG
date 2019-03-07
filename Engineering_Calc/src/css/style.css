@@ -18,7 +18,6 @@
     justify-content: center;
 }
 
-
 .footer {
     background-color: aqua;
     height: 100px;
@@ -32,10 +31,9 @@
     padding: 20px;
     border-radius: 10px;
     background-color: white;
-
 }
 
-.calc_display {
+.calc-display {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -46,38 +44,11 @@
     height: 60px;
 }
 
-button {
-    height: 40px;
-    width: 80px;
-    margin: 4px;
-    padding: 0px, 10px;
-    font-size: 13px;
-    background-color: #d4d4d4;
-    border: 1px solid #b8b8b5;
-    text-align: center;
-}
-
-.number {
-    background-color: #f1f1f1;
-}
-
-.operationButton {
-
-    font-size: 20px;
-
-}
-
-.equally {
-    background-color: #4787ee;
-    font-size: 20px;
-    color: white;
-}
-
-.calc_display_memory {
+.calc-display__memory {
     margin-left: 4px;
     margin-right: 4px;
     margin-top: 4px;
-    margin-bottom: 0px;
+    margin-bottom: 4px;
     font-size: 13px;
     color: #757575;
     text-align: right;
@@ -85,8 +56,7 @@ button {
     border: none;
 }
 
-.calc_display_text {
-
+.calc-display__text {
     height: 50px;
     width: 568px;
     margin-left: 4px;
@@ -99,27 +69,45 @@ button {
     padding: 10px;
 }
 
-.calc_buttons-row {
+.calc-numpad-row {
     display: flex;
     width: 600px;
     justify-content: space-around;
 }
 
-button:hover {
+.calc-numpad-row__button {
+    height: 40px;
+    width: 80px;
+    margin: 4px;
+    padding: 0px, 10px;
+    font-size: 14px;
+    background-color: #d4d4d4;
+    border: 1px solid #b8b8b5;
+    text-align: center;
+}
+
+.calc-numpad-row__button:hover {
     border: 1px solid #858584;
 }
 
-button:active {
+.calc-numpad-row__button:active {
     border: 1px solid #4787ee;
 }
 
-.switchRadDeg:focus {
+.calc-numpad-row__button--switchOnRadDeg {
     background: #4787ee
 }
 
-.switchRadDeg:active {
-    background: #e5e5e5;
-    -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
-    -moz-box-shadow: inset 0px 0px 5px #c1c1c1;
-    box-shadow: inset 0px 0px 5px #c1c1c1;
+.calc-numpad-row__button--number {
+    background-color: #f1f1f1;
+}
+
+.calc-numpad-row__button--operationButton {
+    font-size: 20px;
+}
+
+.calc-numpad-row__button--equally {
+    background-color: #4787ee;
+    font-size: 20px;
+    color: white;
 }
