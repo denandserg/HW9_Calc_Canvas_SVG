@@ -22,12 +22,14 @@ function getCanvas() {
 }
 
 function drawClock() {
-    drawTime(ctx, radius);
+    ctx.clearRect(-150, -150, canvas.width, canvas.height);
     drawLines(ctx, radius);
+    drawTime(ctx, radius);
+    
 }
 
 function drawLines(ctx) {
-    ctx.clearRect(-150, -150, canvas.width, canvas.height);
+   
     ctx.beginPath();
     for (let i = 0; i < 12; i++) {
         ctx.rotate(Math.PI / 6);
@@ -41,7 +43,6 @@ function drawLines(ctx) {
 }
 
 function drawTime(ctx, radius) {
-    ctx.clearRect(-150, -150, canvas.width, canvas.height);
     let now = new Date();
     let hour = now.getHours();
     let minute = now.getMinutes();
