@@ -1,12 +1,11 @@
-window.onload = () => {
-    init();
-}
+window.addEventListener('load', () => {
+    init(document.getElementById('cont'));
+});
 
-function init() {
-
+function init(cont) {
     let strDiv = '<div class="calc"> <div class="calc-display"> <label id="memory" class="calc-display__memory">Memory operation</label> <input id="userInput" class="calc-display__text" type="text" value="0" readonly> </div> <div id="calcNumpad" class="calc-numpad"> <div class="calc-numpad-row"> <button id="rad" class="calc-numpad-row__button" data-flag="off" value="Rad">Rad</button> <button id="deg" class="calc-numpad-row__button" data-flag="on" value="Deg">Deg</button> <button id="factorial" class="calc-numpad-row__button" value="x!">x!</button> <button id="brLeft" class="calc-numpad-row__button" value="(">(</button> <button id="brRight" class="calc-numpad-row__button" value=")">)</button> <button id="percent" class="calc-numpad-row__button" value="%">%</button> <button id="ce" class="calc-numpad-row__button" value="CE">CE</button> </div> <div class="calc-numpad-row"> <button id="inv" class="calc-numpad-row__button" data-flag="">Inv</button> <button id="sin" class="calc-numpad-row__button" value="sin">sin</button> <button id="ln" class="calc-numpad-row__button" value="ln">ln</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="7">7</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="8">8</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="9">9</button> <button class="calc-numpad-row__button calc-numpad-row__button--operationButton" value="/">&#xF7</button> </div> <div class="calc-numpad-row"> <button id="pi" class="calc-numpad-row__button" value="Pi">&#x3C0</button> <button id="cos" class="calc-numpad-row__button" value="Cos">cos</button> <button id="log" class="calc-numpad-row__button" value="log">log</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="4">4</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="5">5</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="6">6</button> <button class="calc-numpad-row__button calc-numpad-row__button--operationButton" value="*">&#xD7</button> </div> <div class="calc-numpad-row"> <button id="e" class="calc-numpad-row__button" value="e">e</button> <button id="tan" class="calc-numpad-row__button" value="Tan">tan</button> <button id="sqrt" class="calc-numpad-row__button" value="sqrt" data-flag="sqrt">&#8730</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="1">1</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="2">2</button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="3">3</button> <button class="calc-numpad-row__button calc-numpad-row__button--operationButton" value="-">-</button> </div> <div class="calc-numpad-row"> <button id="mod" class="calc-numpad-row__button" value="Mod">Mod</button> <button id="exp" class="calc-numpad-row__button" value="Exp">EXP</button> <button id="xPowY" class="calc-numpad-row__button" value="xpowy" data-flag="XpowY">x<sup>y</sup></button> <button class="calc-numpad-row__button calc-numpad-row__button--number" value="0">0</button> <button id ="decimal" class="calc-numpad-row__button" value=".">.</button> <button id="result" class="calc-numpad-row__button calc-numpad-row__button--equally" value="="><b>=</b></button> <button class="calc-numpad-row__button calc-numpad-row__button--operationButton" value="+">+</button> </div> </div> </div>';
-    let divContent = document.getElementById('cont');
-    divContent.innerHTML = strDiv;
+
+    cont.innerHTML = strDiv;
 
     let radBtn = document.getElementById('rad');
     let degBtn = document.getElementById('deg');
@@ -38,17 +37,12 @@ function init() {
     let pointEntry = false;
     let curValFirst;
     let curValSecond;
+    let percentFlag = false;
 
     percentBtn.addEventListener('click', () => {
         count++;
         userInput.value += '%';
-        let curValue = userInput.value.slice(0, -1);
-        let outValue = +curValue / 100;
-        memoryInput.innerHTML = userInput.value;
-        if (userInput.value.length < 4) {
-            userInput.value = '';
-        }
-        checkNull(outValue);
+        percentFlag = true;
     });
 
     decimalBtn.addEventListener('click', () => {
@@ -59,10 +53,17 @@ function init() {
     });
 
     resultBtn.addEventListener('click', () => {
+
         let curValue = userInput.value;
         memoryInput.innerHTML = curValue;
-        userInput.value = eval(curValue);
         count = 0;
+        if (percentFlag) {
+            percentFlag = false;
+            let operands = curValue.split('%');
+            userInput.value = (operands[0] / 100) * operands[1];
+        } else {
+            userInput.value = eval(curValue);
+        }
     });
 
     modBtn.addEventListener('click', () => {
@@ -82,7 +83,7 @@ function init() {
 
     lnBtn.addEventListener('click', () => {
         if (lnBtn.innerHTML == 'ln') {
-            checkNull(2.30258509299);
+            userInput.value = Math.log(userInput.value);
             count = 0;
         } else {
             let curVal = +userInput.value;
@@ -169,17 +170,16 @@ function init() {
         checkNull(2.71828182846);
     });
 
-    userInput.addEventListener('oninput', () => {
-        memoryInput.innerHTML = userInput.value;
-    });
-
     ceBtn.addEventListener('click', () => {
-        if (flag) {
-            userInput.value = userInput.value.slice(0, -1);
-            flag = false;
-        } else {
-            userInput.value = '0';
-            flag = true;
+        if (userInput.value !== '0'){
+            if (flag) {
+                let chunk = userInput.value.slice(0, -1);
+                userInput.value = chunk !== '' ? chunk : 0;
+                flag = false;
+            } else {
+                userInput.value = '0';
+                flag = true;
+            }
         }
         count++;
     });
@@ -317,8 +317,8 @@ function init() {
         return (value >= 2) ? value * getFactorial(value - 1) : 1;
     }
 
-    function checkNull(value) {
-        if (userInput.value === '0') {
+    function checkNull(value) {//добавляет нажатое значение на дисплей
+        if (userInput.value === '0' && !isNaN(value)) {
             userInput.value = value;
         } else {
             userInput.value += value;
