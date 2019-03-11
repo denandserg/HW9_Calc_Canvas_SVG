@@ -7,24 +7,34 @@ let myCanvas,
     h,
     w;
 
-function init () {
-    let divBalls = document.getElementById('divBalls');
-    divBalls.innerHTML = '<canvas id="myCanvas"></canvas>';
-    myCanvas = document.getElementById("myCanvas");
-    ctx = myCanvas.getContext("2d");
-    w = 500;
-    h = 500;
-    //canvas styles
-    myCanvas.height = h;
-    myCanvas.width = w;
-    myCanvas.addEventListener('click', addBall);
-    myCanvas.addEventListener("mousemove", getMousePosition);
-    setInterval(update, 20);
+function init() {
+    try {
+        let flag = false;
+        let divBalls = document.getElementById('divBalls');
+        divBalls.innerHTML = '<canvas id="myCanvas"></canvas>';
+        myCanvas = document.getElementById("myCanvas");
+        ctx = myCanvas.getContext("2d");
+        w = 500;
+        h = 500;
+        //canvas styles
+        myCanvas.height = h;
+        myCanvas.width = w;
+        myCanvas.addEventListener('click', addBall);
+        myCanvas.addEventListener("mousemove", getMousePosition);
+        setInterval(update, 20);
+        flag = true;
+        return flag;
+    } catch (e) {
+        throw new Error(`div element not found at DOM!!!`);
+    }
 }
 
 function getMousePosition (event) {
-        mouse.x = event.pageX - this.offsetLeft;
-        mouse.y = event.pageY - this.offsetTop;
+    let flag = false;
+    mouse.x = event.pageX - this.offsetLeft;
+    mouse.y = event.pageY - this.offsetTop;
+    flag = true;
+    return flag;
 }
 
 let mouse = {};
@@ -60,7 +70,12 @@ function Ball(x, y, r, c, vx, vy) {
 
 //clearing canvas
 function clearCanvas() {
-    ctx.clearRect(0, 0, w, h);
+    try {
+        ctx.clearRect(0, 0, w, h);
+        return true;
+    } catch (e) {
+        throw new Error(`div element not found at DOM!!!`);
+    }
 }
 
 function getRandomColor() {
@@ -78,6 +93,7 @@ let count = 0;//counting balls
 function addBall() {
     ball[count] = new Ball(mouse.x, mouse.y, r, getRandomColor(), randomDirectionX(), randomDirectionY()); 
     count++;
+    return ball;
 }
 
 function randomDirectionX() {
@@ -96,14 +112,17 @@ function randomDirectionY() {
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
-};
+}
 
 //updating canvas
 function update() {
+    let flag = false;
     clearCanvas();
     for (let i = 0; i < count; i++) {
         ball[i].update();
     }
+    flag = true;
+    return flag;
 }
 
 
