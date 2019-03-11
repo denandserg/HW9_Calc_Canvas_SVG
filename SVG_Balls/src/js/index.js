@@ -23,19 +23,29 @@ function Ball(r, cx, cy, dx, dy, color) {
 }
 
 function getMousePosition(event) {
+    let flag = false;
     bound = svg.getBoundingClientRect();
     mouse.x = event.clientX - bound.left - svg.clientLeft;
     mouse.y = event.clientY - bound.top - svg.clientTop;
+    flag = true;
+    return flag;
 }
 
 function init() {
-    let divBall = document.getElementById('ball');
-    divBall.innerHTML = "<svg id='svg'xmlns='http://www.w3.org/2000/svg'version='1.1'width='820'height='620'><defs><clipPath id='clip1'><path d='M0,0 h800 v600 h-800z'clip-rule='evenodd' /></clipPath></defs><rect id='r1' x='0' y='0' width='820' height='620' fill='#eeeeee' stroke='black'/><g clip-path='URL(#clip1)'></g></svg>";
-    svg = document.getElementById('svg');
-    masBalls = document.getElementsByTagName("circle");
-    svg.addEventListener('mousemove', getMousePosition);
-    svg.addEventListener('click', addBall);
-    setInterval("move()", 16);
+    try {
+        let flag = false;
+        let divBall = document.getElementById('ball');
+        divBall.innerHTML = "<svg id='svg'xmlns='http://www.w3.org/2000/svg'version='1.1'width='820'height='620'><defs><clipPath id='clip1'><path d='M0,0 h800 v600 h-800z'clip-rule='evenodd' /></clipPath></defs><rect id='r1' x='0' y='0' width='820' height='620' fill='#eeeeee' stroke='black'/><g clip-path='URL(#clip1)'></g></svg>";
+        svg = document.getElementById('svg');
+        masBalls = document.getElementsByTagName("circle");
+        svg.addEventListener('mousemove', getMousePosition);
+        svg.addEventListener('click', addBall);
+        setInterval("move()", 16);
+        flag = true;
+        return flag;
+    } catch (e) {
+        throw new Error(`div element not found at DOM!!!`);
+    }
 }
 
 function addBall() {
@@ -49,7 +59,7 @@ function addBall() {
     svgBall.setAttributeNS(null, "fill", ball.color);
     svg.appendChild(svgBall);
     masBalls = document.getElementsByTagName("circle");
-    
+    return masBalls;
 }
 
 function randomDirectionX() {
@@ -67,14 +77,13 @@ function randomDirectionY() {
 }
 
 function move() {
+    let flag = false;
     for (let i = 0; i < masBalls.length; i++) {
-
         let x = +masBalls[i].cx.animVal.value;
         let y = +masBalls[i].cy.animVal.value;
         let dx = +masBalls[i].attributes.dx.nodeValue;
         let dy = +masBalls[i].attributes.dy.nodeValue;
         let R = +masBalls[i].r.animVal.value;
-
         if (x + dx >= svg.clientWidth - R || x + dx <= R) {
             dx = -dx;
             svg.getElementsByTagName("circle")[i].setAttribute("dx", dx);
@@ -87,7 +96,9 @@ function move() {
         y += dy;
         svg.getElementsByTagName("circle")[i].setAttribute("cx", x);
         svg.getElementsByTagName("circle")[i].setAttribute("cy", y);
+        flag = true;
     };
+    return flag;
 }
 
 function getRandomInt(min, max) {

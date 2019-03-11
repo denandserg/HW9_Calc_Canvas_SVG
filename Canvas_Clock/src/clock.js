@@ -25,11 +25,9 @@ function drawClock() {
     ctx.clearRect(-150, -150, canvas.width, canvas.height);
     drawLines(ctx, radius);
     drawTime(ctx, radius);
-    
 }
 
 function drawLines(ctx) {
-   
     ctx.beginPath();
     for (let i = 0; i < 12; i++) {
         ctx.rotate(Math.PI / 6);
@@ -93,7 +91,7 @@ function CanvasMock(width, height) {
 
     this.getContext = (string) => {
         this.mock.push('[getContext ' + string + ']');
-        return this.context
+        return this.context;
     }
 }
 
