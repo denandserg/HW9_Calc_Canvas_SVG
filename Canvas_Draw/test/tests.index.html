@@ -6,15 +6,16 @@
 </head>
 <body>
     <div id="mocha"></div>
-
+    <div id="divDraw" style="display:none"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
     <script>
         mocha.setup('bdd');
         var assert = chai.assert;
     </script>
+    <script src="../src/js/index.js"></script>
+    <script src="../src/js/canvasMock.js"></script>
     <script src="test.js"></script>
-    <script src="./js/main.js"></script>
     <script>
         mocha.run();
     </script>
