@@ -28,7 +28,7 @@ window.addEventListener('load', function () {
             }
         }
     }
-    
+
     const resultBtn = document.getElementById('result');
 
     describe('Number buttons', function () {
@@ -60,11 +60,10 @@ window.addEventListener('load', function () {
             getNumBtn(9).dispatchEvent(event);
             event = new MouseEvent('click');
             getNumBtn(0).dispatchEvent(event);
-            
             assert.equal(userInput.value, '725590');
         });
     });
-    
+
     describe('operation Buttons', function () {
         beforeEach(function () {
             let event = new MouseEvent('click');
@@ -72,7 +71,7 @@ window.addEventListener('load', function () {
             event = new MouseEvent('click');
             ceBtn.dispatchEvent(event);
         });
-        
+
         it('5*5 should return 25', function () {
             const mult = getOperationBtn('*');
             click(getNumBtn(5));
@@ -81,7 +80,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '25');
         });
-        
+
         it('0*5 should return 0', function () {
             const mult = getOperationBtn('*');
             click(getNumBtn(0));
@@ -90,7 +89,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '0');
         });
-        
+
         it('5*0 should return 0', function () {
             const mult = getOperationBtn('*');
             click(getNumBtn(5));
@@ -99,7 +98,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '0');
         });
-        
+
         it('5*1*2 should return 10', function () {
             const mult = getOperationBtn('*');
             click(getNumBtn(5));
@@ -110,7 +109,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '10');
         });
-        
+
         it('5*1*2*350 should return 3500', function () {
             const mult = getOperationBtn('*');
             click(getNumBtn(5));
@@ -125,7 +124,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '3500');
         });
-        
+
         it('5-5 should return 0', function () {
             const minus = getOperationBtn('-');
             click(getNumBtn(5));
@@ -134,7 +133,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '0');
         });
-        
+
         it('5-10 should return -5', function () {
             const minus = getOperationBtn('-');
             click(getNumBtn(5));
@@ -144,7 +143,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '-5');
         });
-        
+
         it('5+10 should return 15', function () {
             const plus = getOperationBtn('+');
             click(getNumBtn(5));
@@ -154,7 +153,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '15');
         });
-        
+
         it('-5+10 should return 5', function () {
             const minus = getOperationBtn('-');
             const plus = getOperationBtn('+');
@@ -166,7 +165,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '5');
         });
-        
+
         it('5+10+0 should return 5', function () {
             const plus = getOperationBtn('+');
             click(getNumBtn(5));
@@ -178,7 +177,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '15');
         });
-        
+
         it('10 / 5 should return 2', function () {
             const div = getOperationBtn('/');
             click(getNumBtn(1));
@@ -188,7 +187,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '2');
         });
-        
+
         it('0 / 5 should return 0', function () {
             const div = getOperationBtn('/');
             click(getNumBtn(0));
@@ -197,7 +196,7 @@ window.addEventListener('load', function () {
             click(resultBtn);
             assert.equal(userInput.value, '0');
         });
-        
+
         it('5 / 0 should', function () {
             const div = getOperationBtn('/');
             click(getNumBtn(5));
@@ -207,7 +206,7 @@ window.addEventListener('load', function () {
             assert.equal(userInput.value, 'Infinity');
         });
     });
-    
+
     describe('CE', function () {
         const ceBtn = document.getElementById('ce');
         beforeEach(function () {
@@ -216,7 +215,7 @@ window.addEventListener('load', function () {
             event = new MouseEvent('click');
             ceBtn.dispatchEvent(event);
         });
-        
+
         it('clears numbers', function () {
             click(getNumBtn(5));
             click(getNumBtn(7));
@@ -224,7 +223,7 @@ window.addEventListener('load', function () {
             click(ceBtn);
             assert.equal(userInput.value, '57');
         });
-        
+
         it('clears numbers', function () {
             click(getNumBtn(5));
             click(getNumBtn(7));
@@ -401,6 +400,8 @@ window.addEventListener('load', function () {
             assert.equal(userInput.value, 0.08715574274765817);
         });
     });
+
+
 
     describe('cos', function () {
         let cosBtn = document.getElementById('cos');
@@ -582,4 +583,258 @@ window.addEventListener('load', function () {
         });
     });
 
+    describe('asin', function () {
+        let sinBtn = document.getElementById('sin');
+        let invBtn = document.getElementById('inv');
+        let radBtn = document.getElementById('rad');
+        beforeEach(function () {
+            let event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+            event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+        });
+        it('should return 1.5707963267948966', function () {
+            click(radBtn);
+            click(getNumBtn(1));
+            click(invBtn);
+            click(sinBtn);
+            assert.equal(userInput.value, 1.5707963267948966);
+        });
+        after(() => {
+            click(invBtn);
+        });
+    });
+
+    describe('acos', function () {
+        let cosBtn = document.getElementById('cos');
+        let invBtn = document.getElementById('inv');
+        let radBtn = document.getElementById('rad');
+        let decimalBtn = document.getElementById('decimal');
+        beforeEach(function () {
+            let event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+            event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+        });
+        it('should return 1.4706289056333368', function () {
+            click(radBtn);
+            click(getNumBtn(0));
+            click(decimalBtn);
+            click(getNumBtn(1));
+            click(invBtn);
+            click(cosBtn);
+            assert.equal(userInput.value, 1.4706289056333368);
+        });
+        after(() => {
+            click(invBtn);
+        });
+    });
+
+    describe('atan', function () {
+        let tanBtn = document.getElementById('tan');
+        let invBtn = document.getElementById('inv');
+        let radBtn = document.getElementById('rad');
+        let decimalBtn = document.getElementById('decimal');
+        beforeEach(function () {
+            let event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+            event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+        });
+        it('should return 0.4636476090008061', function () {
+            click(radBtn);
+            click(getNumBtn(0));
+            click(decimalBtn);
+            click(getNumBtn(5));
+            click(invBtn);
+            click(tanBtn);
+            assert.equal(userInput.value, 0.4636476090008061);
+        });
+        after(() => {
+            click(invBtn);
+        });
+    });
+
+    describe('e pow x', function () {
+        let lnBtn = document.getElementById('ln');
+        let invBtn = document.getElementById('inv');
+        beforeEach(function () {
+            let event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+            event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+        });
+        it('should return 12.208071553696506', function () {
+            click(getNumBtn(3));
+            click(invBtn);
+            click(lnBtn);
+            assert.equal(userInput.value, 12.208071553696506);
+        });
+        after(() => {
+            click(invBtn);
+        });
+    });
+
+    describe('10 pow x', function () {
+        let logBtn = document.getElementById('log');
+        let invBtn = document.getElementById('inv');
+        beforeEach(function () {
+            let event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+            event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+        });
+        it('should return 1000', function () {
+            click(getNumBtn(3));
+            click(invBtn);
+            click(logBtn);
+            assert.equal(userInput.value, 1000);
+        });
+        after(() => {
+            click(invBtn);
+        });
+    });
+
+    describe('x pow 2', function () {
+        let sqrtBtn = document.getElementById('sqrt');
+        let invBtn = document.getElementById('inv');
+        beforeEach(function () {
+            let event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+            event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+        });
+        it('should return 9', function () {
+            click(getNumBtn(3));
+            click(invBtn);
+            click(sqrtBtn);
+            assert.equal(userInput.value, 9);
+        });
+        after(() => {
+            click(invBtn);
+        });
+    });
+
+    describe('x sqrt pow y', function () {
+        let xPowYBtn = document.getElementById('xPowY');
+        let invBtn = document.getElementById('inv');
+        beforeEach(function () {
+            let event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+            event = new MouseEvent('click');
+            ceBtn.dispatchEvent(event);
+        });
+        it('should return 3', function () {
+            click(getNumBtn(2));
+            click(getNumBtn(7));
+            click(invBtn);
+            click(xPowYBtn);
+            click(getNumBtn(3));
+            click(xPowYBtn);
+            assert.equal(userInput.value, 3);
+        });
+        after(() => {
+            click(invBtn);
+        });
+    });
+
+    describe('Inv', function () {
+        let invBtn = document.getElementById('inv');
+        let sinBtn = document.getElementById('sin');
+        let lnBtn = document.getElementById('ln');
+        let cosBtn = document.getElementById('cos');
+        let logBtn = document.getElementById('log');
+        let tanBtn = document.getElementById('tan');
+        let sqrtBtn = document.getElementById('sqrt');
+        let xPowYBtn = document.getElementById('xPowY');
+        describe('Inv not push', () => {
+            describe('set innerHtml button - sin', () => {
+                it('should return true, when sin innerHTML = sin', () => {
+                    assert.equal(sinBtn.innerHTML, 'sin');
+                });
+            });
+            describe('cos innerHtml button - cos', () => {
+                it('should return true, when cos innerHTML = cos', () => {
+                    assert.equal(cosBtn.innerHTML, 'cos');
+                });
+            });
+            describe('tan innerHtml button - tan', () => {
+                it('should return true, when tan innerHTML = tan', () => {
+                    assert.equal(tanBtn.innerHTML, 'tan');
+                });
+            });
+            describe('ln innerHtml button - ln', () => {
+                it('should return true, when ln innerHTML = ln', () => {
+                    assert.equal(lnBtn.innerHTML, 'ln');
+                });
+            });
+            describe('log innerHtml button - log', () => {
+                it('should return true, when log innerHTML = log', () => {
+                    assert.equal(logBtn.innerHTML, 'log');
+                });
+            });
+            describe('sqrt innerHtml button - sqrt', () => {
+                it('should return true, when sqrt innerHTML = sqrt', () => {
+                    assert.equal(sqrtBtn.innerHTML, '√');
+                });
+            });
+            describe('xPowY innerHtml button - xPowY', () => {
+                it('should return true, when xPowY innerHTML = xPowY', () => {
+                    assert.equal(xPowYBtn.innerHTML, 'x<sup>y</sup>');
+                });
+            });
+        });
+        describe('Inv push', () => {
+            
+            describe('sin innerHtml button - asin', () => {
+                it('should return true, when sin innerHTML = asin', () => {
+                    click(invBtn);
+                    assert.equal(sinBtn.innerHTML, 'sin<sup>-1</sup>');
+                    click(invBtn);
+                });
+            });
+            describe('cos innerHtml button - acos', () => {
+                it('should return true, when cos innerHTML = acos', () => {
+                    click(invBtn);
+                    assert.equal(cosBtn.innerHTML, 'cos<sup>-1</sup>');
+                    click(invBtn);
+                });
+            });
+            describe('tan innerHtml button - atan', () => {
+                it('should return true, when tan innerHTML = atan', () => {
+                    click(invBtn);
+                    assert.equal(tanBtn.innerHTML, 'tan<sup>-1</sup>');
+                    click(invBtn);
+                });
+            });
+            describe('ln innerHtml button - ln', () => {
+                it('should return true, when ln innerHTML = ln', () => {
+                    click(invBtn);
+                    assert.equal(lnBtn.innerHTML, 'e<sup>x</sup>');
+                    click(invBtn);
+                });
+            });
+            describe('log innerHtml button - log', () => {
+                it('should return true, when log innerHTML = log', () => {
+                    click(invBtn);
+                    assert.equal(logBtn.innerHTML, '10<sup>x</sup>');
+                    click(invBtn);
+                });
+            });
+            describe('sqrt innerHtml button - sqrt', () => {
+                it('should return true, when sqrt innerHTML = sqrt', () => {
+                    click(invBtn);
+                    assert.equal(sqrtBtn.innerHTML, 'x<sup>2</sup>');
+                    click(invBtn);
+                });
+            });
+            describe('xPowY innerHtml button - xPowY', () => {
+                it('should return true, when xPowY innerHTML = xPowY', () => {
+                    click(invBtn);
+                    assert.equal(xPowYBtn.innerHTML, '<sup>y</sup>√x');
+                    click(invBtn);
+                });
+            });
+        });
+    });
 });
