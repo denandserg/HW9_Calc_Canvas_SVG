@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clock</title>
+    <style>
+        body * {
+            margin: 10px;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
 <body>
-<div id="clockCanvas">
-<!--Добавить HTML <Canvas> элемент на страницу:-->
-</div>
-<script src="./src/js/index.js"></script>
+<canvas id="a" width="500" height="425"></canvas>
+<script src="src/clock_on_canvas.js"></script>
+<script>
+    new ClockOnCanvas("a");
+</script>
 </body>
 </html>
