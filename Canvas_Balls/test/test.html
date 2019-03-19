@@ -3,22 +3,23 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
-    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
 <div id="mocha"></div>
-<div id="ball"></div>
+<canvas id="myCanvas" width="600px" height="300px" style="display: none"></canvas>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+
 <script>
     mocha.setup('bdd');
     var assert = chai.assert;
 </script>
-<script src="../src/js/index.js"></script>
-<script src="./test.js"></script>
+<script src="../js/main.js"></script>
+<script src="../test/balls_test.js"></script>
+<script src="../index.html"></script>
+
 <script>
     mocha.run();
 </script>
 </body>
-
 </html>

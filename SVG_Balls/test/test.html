@@ -5,8 +5,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
 </head>
 <body>
+<svg id="svgPlace" width="800" height="400" style="display: none">
+    <rect x="0" y="0" height="400" width="800" style="stroke:black; fill:white"></rect>
+</svg>
 <div id="mocha"></div>
-<div id="divBalls"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
 
@@ -14,8 +16,10 @@
     mocha.setup('bdd');
     var assert = chai.assert;
 </script>
-<script src="../src/js/index.js"></script>
-<script src="./index.test.js"></script>
+<script src="../js/main.js"></script>
+<script src="../test/balls_test.js"></script>
+<script src="../index.html"></script>
+
 <script>
     mocha.run();
 </script>

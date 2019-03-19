@@ -45,7 +45,6 @@ function drawClock() {
 }
 
 function drawLines(ctx) {
-    let flag = false;
     ctx.beginPath();
     for (let i = 0; i < 12; i++) {
         ctx.rotate(Math.PI / 6);
@@ -56,12 +55,9 @@ function drawLines(ctx) {
     ctx.stroke(); // нарисовали то, что ранее описали
     ctx.restore(); // достаем последний сохраненный контекст из стэка
     ctx.save();
-    flag = true;
-    return flag;
 }
 
 function drawTime(ctx, radius) {
-    let flag = false;
     let now = new Date();
     let hour = now.getHours();
     let minute = now.getMinutes();
@@ -81,12 +77,9 @@ function drawTime(ctx, radius) {
     second = (second * Math.PI / 30);
     ctx.strokeStyle = 'blue';
     drawHand(ctx, second, radius * 0.9, radius * 0.02);
-    flag = true;
-    return flag;
 }
 
 function drawHand(ctx, pos, length, width) {
-    let flag = false;
     ctx.beginPath();
     ctx.lineWidth = width;
     ctx.lineCap = "round";
@@ -95,6 +88,4 @@ function drawHand(ctx, pos, length, width) {
     ctx.lineTo(0, -length);
     ctx.stroke();
     ctx.rotate(-pos);
-    flag = true;
-    return flag;
 }

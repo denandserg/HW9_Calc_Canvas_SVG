@@ -39,34 +39,15 @@ function drawMove(e) {
 		mouse.y = e.pageY - this.offsetTop;
 		context.lineTo(mouse.x, mouse.y);
 		context.stroke();
-		return true;
 	}
-	return false;
 }
 
 function drawFalse(e) {
-	if (draw == true) {
-		mouse.x = e.pageX - this.offsetLeft;
-		mouse.y = e.pageY - this.offsetTop;
-		context.lineTo(mouse.x, mouse.y);
-		context.stroke();
-		context.closePath();
-		draw = false;
-		return true;
-	}
-	return false;
+	draw = false;
 }
 
 function drawTrue(e) {
-	if (draw == false) {
-		mouse.x = e.pageX - this.offsetLeft;
-		mouse.y = e.pageY - this.offsetTop;
-		context.beginPath();
-		context.moveTo(mouse.x, mouse.y);
-		draw = true;
-		return true;
-	}
-	return false;
+	draw = true;
 }
 
 
